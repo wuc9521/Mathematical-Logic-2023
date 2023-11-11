@@ -1,0 +1,25 @@
+\documentclass[10pt,  a4paper]{article}
+\input{preamable/usepackage.txt}
+\usepackage{setup}
+
+
+\begin{document}
+\input{preamable/titlepage.tex}
+
+\newpage
+{\hypersetup{linkcolor=black}\tableofcontents}
+
+% 正文部分放在secitons/文件夹里
+\input{sections/introduction.tex}
+\input{sections/mathematical-logic.tex}
+\input{sections/lambda-calculus.tex}
+\input{sections/relations.tex}
+\input{sections/conclution.tex}
+
+
+\pagebreak 
+% \nocite{*}
+\bibliography{main}
+\bibliographystyle{plain}
+
+\end{document}

@@ -1,0 +1,81 @@
+\ProvidesPackage{setup}
+\usepackage[UTF8]{ctex}
+\usepackage{standalone}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfsetup{skipabove=\topskip,  skipbelow=\topskip}
+\mdfdefinestyle{theoremstyle}{%
+    linecolor=black,  linewidth=1pt,  %
+    frametitlerule=true,  %
+    frametitlebackgroundcolor=gray!20,  
+    innertopmargin=\topskip,  
+}
+\mdtheorem[style=theoremstyle]{Problem}{Problem}
+\newenvironment{Solution}{\textbf{Solution.}}
+
+\definecolor{codegreen}{rgb}{0,  0.6,  0}
+\definecolor{codegray}{rgb}{0.5,  0.5,  0.5}
+\definecolor{codepurple}{rgb}{0.58,  0,  0.82}
+
+\lstdefinestyle{mystyle}{  
+    commentstyle=\color{codegreen},  
+    keywordstyle=\color{magenta},  
+    numberstyle=\tiny\color{codegray},  
+    stringstyle=\color{codepurple},  
+    basicstyle=\ttfamily\footnotesize,  
+    breakatwhitespace=false,  
+    breaklines=true,  
+    captionpos=b, 
+    keepspaces=true,  
+    numbers=left, 
+    numbersep=5pt, 
+    showspaces=false, 
+    showstringspaces=false,  
+    showtabs=false, 
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=2.5cm]{templates/logo-nju2.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\newtheorem{definition}{Definition}
+\renewcommand{\refname}{引用与参考}
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{case}{Case}
+\newenvironment{itemizedot}{\begin{itemize} \renewcommand{\labelitemi}{$\bullet$}\renewcommand{\labelitemii}{$\bullet$}\renewcommand{\labelitemiii}{$\bullet$}\renewcommand{\labelitemiv}{$\bullet$}}{\end{itemize}}
+\catcode`\<=\active\def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active\def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\catcode`\<=\active\def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+
+%Begin now!
+\renewcommand{\cftsecaftersnum}{.}%
+
+\titlelabel{\thetitle.\quad}
+\hypersetup{
+    colorlinks=true,  
+    linkcolor=blue,  
+    filecolor=magenta, 
+    urlcolor=blue,  
+}
