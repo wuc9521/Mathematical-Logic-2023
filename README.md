@@ -1,7 +1,7 @@
 $$
 \Huge\textbf{Mathematical Logic}
 $$
-> 南京大学软件学院2023年秋季数理逻辑期中读书报告. 本次汇报的主题是$\lambda$演算.
+> 南京大学软件学院2023年秋季数理逻辑期中读书报告. 本次汇报的主题是 $\lambda$ 演算.
 
 项目使用bibtex和xelatex编译. 
 ```shell

@@ -118,7 +118,34 @@ $\lambda$演算是一种形式语言, $\lambda$演算的表达式被称为是 \t
     如果$M$经过0或多步规约到$M'$, 我们记$M\twoheadrightarrow_\beta M'$. 形式化地, 我们定义 $\twoheadrightarrow_\beta$为$\to_\beta$的自反传递闭包.
 \end{definition}
 \begin{definition}
-    $\forall M, N \in \Lambda: (M\equiv_\beta N):=(M\twoheadrightarrow_\beta N)\land (N\twoheadrightarrow_\beta M)$. 形式化地, 我们定义 $\equiv_\beta$为$\twoheadrightarrow_\beta$的对称闭包, 也就是$\to_\beta$的自反对称传递闭包.
+    $\forall M, N \in \Lambda: (M=_\beta N):=(M\twoheadrightarrow_\beta N)\land (N\twoheadrightarrow_\beta M)$. 形式化地, 我们定义 $=_\beta$为$\twoheadrightarrow_\beta$的对称闭包, 也就是$\to_\beta$的自反对称传递闭包.
 \end{definition}
 
 \subsection{\textbf{Church-Rosser}定理}
+\subsubsection{\texorpdfstring{$\eta$}{eta}-规约}
+正如在一开始提到的, 如果两个函数的定义域和陪域相同, 并且对于任意的输入, 这两个函数的输出相同, 那么能否认为这两个函数就是相同的呢? 事实上, 这个问题的答案是肯定的. 这个问题的答案被称为\textbf{函数的外延性原理} (extensionality principle of functions). 
+\begin{definition}
+    形式化地, 我们定义$\lambda$演算中的外延性法则 
+    \[
+        M,M' \in \Lambda, \frac{\forall A\in \Lambda:MA=M'A}{M=M'}\tag{$ext_{\forall}$}
+    \]
+    不难发现如果$x$为变量, $M, M'$为$\lambda$项, 那么
+    \[
+        \frac{\forall x\in \mathcal V: Mx=M'x}{\forall A \in \Lambda: MA=M'A}
+    \]
+    所以我们可以把条件限制到
+    \[
+        \frac{\forall x\in FV(M)\cup FV(M'): Mx=M'x}{M=M'}\tag{$ext$}
+    \]
+    i.e.
+    \[
+        \forall x \in \mathcal{V}\backslash FV(M): M=\lambda{x}.Mx \tag{$\eta$}
+    \]
+    我们记作$M\to_\eta \lambda x.Mx$, 称为 $\eta$-规约. 
+\end{definition}
+
+\begin{definition}
+    特别地, 如果$M\to_\beta N\land M\to_\eta N$, 我们记作$M\to_{\beta\eta}N$.
+\end{definition}
+
+\subsubsection{\textbf{Church-Rosser}定理}
