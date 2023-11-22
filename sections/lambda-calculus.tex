@@ -86,16 +86,16 @@ $\lambda$演算是一种形式语言, $\lambda$演算的表达式被称为是 \t
 \subsubsection{代换}
 上面我们定义了$\lambda$演算中的重命名. 重命名的定义是十分符合直觉且简单的. 我们在重命名的基础上定义\textbf{\textit{替换}} (substition), 也就是给重命名加上一些不那么显然的限制. 同时在符号上, 我们将前面的$\{\cdot/\cdot\}$修改为$[\cdot/\cdot]$.
 \begin{enumerate}
-    \item 只有自由变量可以被替换掉. e.g. $x(\lambda x.yx)[N/x]=N (\lambda x.yx) \not= N (\lambda x.yN) $
+    \item 只有自由变量可以被替换掉. e.g. $x(\lambda x.yx)[N/x]=N  (\lambda{x}.yx) \not= N (\lambda{x}.yN) $
     \item 避免无意中引入自由变量
 \end{enumerate}
 我们给出替换的形式化定义如下:
 \begin{definition}
     假设$\Lambda$为$\lambda$项集, $\mathcal V$为变量集, $M, N$为$\lambda$项, $x$为变量. 我们定义替换$\left(\right.$记作$M[N/x]$ $\left.\right)$如下:
     \begin{enumerate}\normalfont{}
-        \item[(1)] $x[N/x]\equiv N$
-        \item[(2)] $y[N/x]\equiv y$ ($y\not=x$)
-        \item[(3)] $(PQ)[N/x]\equiv(P[N/x])(Q[N/x])$
+        \item[(1)] $x[N/x]\equiv{N}$
+        \item[(2)] $y[N/x]\equiv{y}$ ($y\not=x$)
+        \item[(3)] $(PQ)[N/x]\equiv{(P[N/x])(Q[N/x])}$
         \item[(4)] $(\lambda x.P)[N/x]\equiv\lambda x.P$
         \item[(5)] $(\lambda y.P)[N/x]\equiv\lambda y.P[N/x]$ ($y\not=x$且$y\not\in FV(N)$)
         \item[(6)] $(\lambda y.P)[N/x]\equiv\lambda y'.P(M\{y'/y\})[N/x]$ ($y\not=x$且$y\not\in FV(N)$且$y'$为新变量)
@@ -103,7 +103,22 @@ $\lambda$演算是一种形式语言, $\lambda$演算的表达式被称为是 \t
 \end{definition}    
 
 \subsubsection{\texorpdfstring{$\beta$}{beta}-归约}
-
-\subsection{利用无类型\texorpdfstring{$\lambda$}{lambda}演算编程}
+为了方便, 我们从现在开始将两个 $\alpha$-等价的$\lambda$项视为相等. 我们提出一个新的概念叫 $\beta$-规约 ($\beta$-reduction), 也就是说, 我们可以将一个$\lambda$项中的$\lambda$抽象应用到参数上. 
+\begin{definition}
+    假设$M, N$为$\lambda$项, $x$为变量. 我们定义单步$\beta$-规约$\left(\right.$记作$\to_\beta$ $\left.\right)$如下为满足如下条件的最小的等价关系. $\forall x\in \mathcal V, \forall M, M^\prime, N\in \Lambda$:%
+    \begin{gather}
+        \frac{ }{(\lambda x.M)N \to_\beta M[N/x]} \tag{$\beta$}\\
+        \frac{M \to_\beta{M'}}{MN \to_\beta{M'}N}\tag{cong1}\\
+        \frac{N \to_\beta{N'}}{MN \to_\beta{M}N'}\tag{cong2} \\
+        \frac{M \to_\beta{M'}}{\lambda{x}.M \to_\beta\lambda{x}.M'}\tag{$\xi$}
+    \end{gather}
+\end{definition}
+因此, 我们可以将$M$进行单步$\beta$-规约, 或者叫规约$M$的一个$\beta$-范式 (redex), 得到$M'$. 记作$M\to_\beta M'$.
+\begin{definition}
+    如果$M$经过0或多步规约到$M'$, 我们记$M\twoheadrightarrow_\beta M'$. 形式化地, 我们定义 $\twoheadrightarrow_\beta$为$\to_\beta$的自反传递闭包.
+\end{definition}
+\begin{definition}
+    $\forall M, N \in \Lambda: (M\equiv_\beta N):=(M\twoheadrightarrow_\beta N)\land (N\twoheadrightarrow_\beta M)$. 形式化地, 我们定义 $\equiv_\beta$为$\twoheadrightarrow_\beta$的对称闭包, 也就是$\to_\beta$的自反对称传递闭包.
+\end{definition}
 
 \subsection{\textbf{Church-Rosser}定理}
