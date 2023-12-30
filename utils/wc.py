@@ -11,7 +11,6 @@ file_path = sys.argv[1]
 pdf_words = 0
 with plb.open(file_path) as pdf:
     for page in pdf.pages:
-        print(' ')
         print('Page' + str(page.page_number) + ': ', end="")
         pg = page.extract_text()
         del_f = [' ', '\n', '\s', '!', '.', '(', ')', ';', '-', '/', ':', '，', '。', '、', '；', '《', '》', '“', '”', '：', '（', '）']

@@ -149,3 +149,15 @@ $\lambda$演算是一种形式语言, $\lambda$演算的表达式被称为是 \t
 \end{definition}
 
 \subsubsection{\textbf{Church-Rosser}定理}
+\begin{theorem}
+    假设 $\twoheadrightarrow\in \{\twoheadrightarrow_\beta, \twoheadrightarrow_{\beta\eta}\}$, 那么对于任意的$M, N\in \Lambda$, 如果$M\twoheadrightarrow N$, 且$M\twoheadrightarrow P$, 那么存在$Z\in \Lambda$, 使得$N\twoheadrightarrow Z$且$P\twoheadrightarrow Z$.
+\end{theorem}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{figures/cr1.png}
+    \caption{\textbf{Church-Rosser}定理的图示}\label{fig:church-rosser}
+\end{figure}
+\begin{corollary}
+    如果$M=_\beta N$, 那么存在$Z\in \Lambda$, 使得$M\twoheadrightarrow Z$且$N\twoheadrightarrow Z$.
+\end{corollary}
